@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.82.0">
+
+    <title>ISA Group Project</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/sticky-footer-navbar.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body class="d-flex flex-column h-100">
+<!-- Fixed navbar -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">App Name</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./admin.html">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./customer.html">Menu</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1 class="mt-5">Menu</h1>
+        <p class="lead">Enjoy Our meal!</p>
+    </div>
+</main>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img class="bd-placeholder-img card-img-top rounded float-left" src="img/food01.jpg" alt="" width="100%" height="auto" >
+                    <div class="card-body">
+                        <p class="card-text">Food Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">Edit</button>
+                                <button type="button" class="btn btn-warning ">Save</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img class="bd-placeholder-img card-img-top rounded float-left" src="img/food02.jpg" alt="" width="100%" height="auto" >
+                    <div class="card-body">
+                        <p class="card-text">Food Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">Edit</button>
+                                <button type="button" class="btn btn-warning ">Save</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img class="bd-placeholder-img card-img-top rounded float-left" src="img/food03.jpg" alt="" width="100%" height="auto" >
+                    <div class="card-body">
+                        <p class="card-text">Food Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">Edit</button>
+                                <button type="button" class="btn btn-warning ">Save</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="btn-custom float-end">
+    <button id="btn_create" class="btn btn-primary">Create</button>
+    <button id="btn_save" class="btn btn-warning">Save</button>
+</div>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted"></span>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+</html>
