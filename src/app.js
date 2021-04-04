@@ -10,11 +10,8 @@ console.log(__dirname)
 // Initializes express and sets up the paths.
 const app = express()
 
-const corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200,
-}
-app.use(cors(corsOptions));
+app.use(cors());
+app.disable('etag');
 
 // Customizes server, automatically parse incoming json into an object
 app.use(express.json())
