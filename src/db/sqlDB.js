@@ -85,11 +85,11 @@ const accessDB = {
 const tests = async () => {
     accessDB.createTables()
 
-    let insertResult = await accessDB.insert("Restaurant", "RestaurantName", "'Miso'")
-    console.log(insertResult)
+    // let insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Restaurant', 0")
+    // console.log(insertResult)
     
-    let queryResult = await accessDB.select("SELECT * FROM Restaurant")
-    console.log(queryResult)
+    // let queryResult = await accessDB.select("SELECT * FROM Stat")
+    // console.log(queryResult)
 }
 
 module.exports.accessDB = accessDB
