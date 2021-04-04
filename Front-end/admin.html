@@ -9,6 +9,8 @@
     <meta name="generator" content="Hugo 0.82.0">
 
     <title>ISA Group Project</title>
+    <link rel="shortcut icon" href="#">
+
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/sticky-footer-navbar.css">
     <link rel="stylesheet" href="css/admin.css">
@@ -43,67 +45,21 @@
 <main class="flex-shrink-0">
     <div class="container">
         <h1 class="mt-5">Menu (Admin)</h1>
-        <p class="lead">Enjoy Our meal!</p>
+        <p class="lead">Enjoy Our meal! First, select a restaurant to modify it.</p>
     </div>
 </main>
 
 <div class="album py-5 bg-light">
     <div class="container">
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-                <div class="card shadow-sm">
-                    <img class="bd-placeholder-img card-img-top rounded float-left" src="img/food01.jpg" alt="" width="100%" height="auto" >
-                    <div class="card-body">
-                        <p class="card-text">Food Description</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary">Edit</button>
-                                <button type="button" class="btn btn-warning ">Save</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <img class="bd-placeholder-img card-img-top rounded float-left" src="img/food02.jpg" alt="" width="100%" height="auto" >
-                    <div class="card-body">
-                        <p class="card-text">Food Description</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary">Edit</button>
-                                <button type="button" class="btn btn-warning ">Save</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <img class="bd-placeholder-img card-img-top rounded float-left" src="img/food03.jpg" alt="" width="100%" height="auto" >
-                    <div class="card-body">
-                        <p class="card-text">Food Description</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary">Edit</button>
-                                <button type="button" class="btn btn-warning ">Save</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id=restaurantList class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         </div>
-
     </div>
 </div>
+
 <div>
     <div class="btn-custom float-end">
-        <button id="btn_create" class="btn btn-primary">Create Menu</button>
-        <button id="btn_save" class="btn btn-warning">Save Menu</button>
+        <button id="btn_create" class="btn btn-primary">Create Restaurant</button>
+        <button id="btn_save" class="btn btn-warning">Save Restaurant</button>
     </div>
 </div>
 
@@ -123,12 +79,12 @@
             <tr>
                 <th scope="row">GET</th>
                 <td>/API/v1/restaurant/</td>
-                <td><span id="num_get_admin">0</span></td>
+                <td><p id="num_get_admin"></p></td>
             </tr>
             <tr>
                 <th scope="row">POST</th>
                 <td>/API/v1/restaurant/</td>
-                <td><span id="num_post_admin">0</span></td>
+                <td><p id="num_post_admin"></p></td>
             </tr>
             <tr>
                 <th scope="row">PUT</th>
@@ -145,7 +101,8 @@
     </div>
 </footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<script deferred="deferred" src="./js/admin.js"></script>
 </body>
 </html>
