@@ -38,7 +38,7 @@ const accessDB = {
             for (const [queryKey, queryValue] of Object.entries(createTableQueries)) {
                 con.query(queryValue[0], (err, result) => {
                     if (err) throw err
-                    
+
                     if (result.affectedRows > 0) {
                         console.log(`${queryValue[1]} table created.`)
                     }
@@ -57,7 +57,7 @@ const accessDB = {
         try {
             const rows = await query(selectQuery)
             return rows
-        } catch(err) {
+        } catch (err) {
             console.log(err)
             throw err
         }
@@ -74,11 +74,40 @@ const accessDB = {
             const rows = await query(insertQuery)
             console.log(`Inserted new record ${values} for columns ${columns} into ${tableName} table.`)
             return rows
-        } catch(err) {
+        } catch (err) {
             console.log(err)
             throw err
         }
     },
+
+    // Update a table row.
+    update: async (tableName, column, value, idColumn, idValue) => {
+        try {
+            // columns: should receive a string such as "(name, score)"
+            // values: should correspond to the columns such as "'edwin', 100"
+
+            const updateQuery = `UPDATE ${tableName} SET ${column} = ${value} WHERE ${idColumn} = ${idValue}`
+            const rows = await query(updateQuery)
+            console.log(`Updated row for ${tableName}.`)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+
+    // Increment a stat usage
+    incrementStatUsage: async (statName) => {
+        try {
+            const updateQuery = `UPDATE Stat SET StatUsage = StatUsage + 1 WHERE StatName = '${statName}'`
+            const result = await query(updateQuery)
+            console.log(`Updated row for Stat.`)
+            return result
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    }
 }
 
 // Tests:
@@ -87,7 +116,7 @@ const tests = async () => {
 
     // let insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Restaurant', 0")
     // console.log(insertResult)
-    
+
     // let queryResult = await accessDB.select("SELECT * FROM Stat")
     // console.log(queryResult)
 }
