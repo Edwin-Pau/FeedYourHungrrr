@@ -108,11 +108,38 @@
 
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
-        <span class="text-muted">STAT REPORT</span>
-        <div>GET: <span id="num_get">0</span></div>
-        <div>POST: <span id="num_post">0</span></div>
-        <div>PUT: <span id="num_put">0</span></div>
-        <div>DELETE: <span id="num_delete">0</span></div>
+        <span class="fs-4">STAT REPORT</span>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Method</th>
+                <th scope="col">Endpoint</th>
+                <th scope="col">Requests</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">GET</th>
+                <td>/API/v1/restaurant/</td>
+                <td><span id="num_get_admin">0</span></td>
+            </tr>
+            <tr>
+                <th scope="row">POST</th>
+                <td>/API/v1/restaurant/</td>
+                <td><span id="num_post_admin">0</span></td>
+            </tr>
+            <tr>
+                <th scope="row">PUT</th>
+                <td>/API/v1/restaurant/</td>
+                <td><span id="num_put_admin">0</span></td>
+            </tr>
+            <tr>
+                <th scope="row">DELETE</th>
+                <td>/API/v1/restaurant/</td>
+                <td ><span id="num_delete_admin">0</span></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </footer>
 
