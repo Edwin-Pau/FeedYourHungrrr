@@ -2,12 +2,19 @@ const path = require('path')
 const express = require('express')
 const reviewRouter = require('./routers/review.js')
 const restaurantRouter = require('./routers/restaurant')
+const cors = require('cors');
 
 // Variable for the current directory is __dirname.
 console.log(__dirname)
 
 // Initializes express and sets up the paths.
 const app = express()
+
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200,
+}
+app.use(cors(corsOptions));
 
 // Customizes server, automatically parse incoming json into an object
 app.use(express.json())
