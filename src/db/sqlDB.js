@@ -20,6 +20,13 @@ const createTableQueries = {
         'RestaurantName VARCHAR(511))'
     ].join(' '), 'Restaurant'],
 
+    createUserTableQuery: [[
+        'CREATE TABLE IF NOT EXISTS User',
+        '(UserID int AUTO_INCREMENT PRIMARY KEY,',
+        'Username VARCHAR(511),',
+        'Password VARCHAR(511))'
+    ].join(' '), 'User'],
+
     createStatTableQuery: [[
         'CREATE TABLE IF NOT EXISTS Stat',
         '(StatID int AUTO_INCREMENT PRIMARY KEY,',
@@ -80,7 +87,7 @@ const accessDB = {
         }
     },
 
-    // Update a table row.
+    // Update a table row by finding a single row ID value.
     update: async (tableName, column, value, idColumn, idValue) => {
         try {
             // columns: should receive a string such as "(name, score)"
@@ -89,6 +96,22 @@ const accessDB = {
             const updateQuery = `UPDATE ${tableName} SET ${column} = ${value} WHERE ${idColumn} = ${idValue}`
             const rows = await query(updateQuery)
             console.log(`Updated row for ${tableName}.`)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+
+    // Delete table rows by column values.
+    delete: async (tableName, column, value) => {
+        try {
+            // columns: should receive a string such as "(name, score)"
+            // values: should correspond to the columns such as "'edwin', 100"
+
+            const updateQuery = `DELETE FROM ${tableName} WHERE ${column} = ${value}`
+            const rows = await query(updateQuery)
+            console.log(`Deleted row for ${tableName} WHERE ${column} = ${value}.`)
             return rows
         } catch (err) {
             console.log(err)
@@ -114,11 +137,26 @@ const accessDB = {
 const tests = async () => {
     accessDB.createTables()
 
-    // let insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Restaurant', 0")
-    // console.log(insertResult)
+    let insertResult;
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Restaurant', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Restaurant', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Restaurant', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Restaurant', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Menu', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Menu', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Menu', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Menu', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Item', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Item', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Item', 0")
+    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Item', 0")
 
-    // let queryResult = await accessDB.select("SELECT * FROM Stat")
-    // console.log(queryResult)
+    let queryResult = await accessDB.select("SELECT * FROM Stat")
+    console.log(queryResult)
+}
+
+if (require.main === module) {
+    tests()
 }
 
 module.exports.accessDB = accessDB

@@ -1,6 +1,6 @@
 const path = require('path')
 const express = require('express')
-const reviewRouter = require('./routers/review.js')
+const userRouter = require('./routers/user.js')
 const restaurantRouter = require('./routers/restaurant')
 const statRouter = require('./routers/stat')
 const cors = require('cors');
@@ -22,7 +22,7 @@ const port = process.env.PORT || 3000
 
 // Registers routers, allowing us to refactor routes into separate files
 app.use('/api/v1/', restaurantRouter)
-app.use('/api/v1/', reviewRouter);
+app.use('/api/v1/', userRouter);
 app.use('/api/v1/', statRouter);
 
 // Starts up the web server.
