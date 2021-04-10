@@ -96,7 +96,7 @@ const accessDB = {
 
             const updateQuery = `UPDATE ${tableName} SET ${column} = ${value} WHERE ${idColumn} = ${idValue}`
             const rows = await query(updateQuery)
-            console.log(`Updated row for ${tableName}.`)
+            console.log(`Updated ${tableName} for the column ${idColumn} = ${idValue}.`)
             return rows
         } catch (err) {
             console.log(err)
