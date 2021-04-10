@@ -24,7 +24,8 @@ const createTableQueries = {
         'CREATE TABLE IF NOT EXISTS User',
         '(UserID int AUTO_INCREMENT PRIMARY KEY,',
         'Username VARCHAR(511),',
-        'Password VARCHAR(511))'
+        'Password VARCHAR(511),',
+        'Token VARCHAR(511))'
     ].join(' '), 'User'],
 
     createStatTableQuery: [[
@@ -138,18 +139,20 @@ const tests = async () => {
     accessDB.createTables()
 
     let insertResult;
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Restaurant', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Restaurant', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Restaurant', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Restaurant', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Menu', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Menu', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Menu', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Menu', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Item', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Item', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Item', 0")
-    // insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Item', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Restaurant', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Restaurant', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Restaurant', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Restaurant', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Menu', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Menu', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Menu', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Menu', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Item', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Item', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Item', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Item', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_User_Signup', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_User_Login', 0")
 
     let queryResult = await accessDB.select("SELECT * FROM Stat")
     console.log(queryResult)
@@ -159,4 +162,5 @@ if (require.main === module) {
     tests()
 }
 
+accessDB.createTables()
 module.exports.accessDB = accessDB
