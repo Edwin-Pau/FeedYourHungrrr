@@ -17,88 +17,98 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-<!-- Fixed navbar -->
-<header>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="home.html">FeedYourHungrrr</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">Restaurants</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="stats.html">Stats</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://app.swaggerhub.com/apis-docs/FeedYourHungrrr/FeedYourHungrrr/1.0.0#/">API Docs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="admin.html">Login/Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<!-- Begin page content -->
-<div class="sidenav">
-<div class="login-main-text">
-    <h2>Application<br> Login Page</h2>
-    <p>Login or register from here to access.</p>
-</div>
-</div>
-<div class="main">
-    <div class="col-md-6 col-sm-12">
-        <div class="login-form" id="login_div">
-            <form>
-                <div class="form-group">
-                <label>User Name</label>
-                <input type="text" id="user_name" class="form-control" placeholder="User Name">
-            </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Password">
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="home.html">FeedYourHungrrr</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">Restaurants</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="stats.html">Stats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="https://app.swaggerhub.com/apis-docs/FeedYourHungrrr/FeedYourHungrrr/1.0.0#/">API
+                                Docs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="admin.html">Login/Logout</a>
+                        </li>
+                    </ul>
                 </div>
-                <button type="button" id="btn_login" class="btn btn-black">Login</button>
-                <button type="button" id="btn_register" class="btn btn-secondary">Register</button>
-            </form>
+            </div>
+        </nav>
+    </header>
 
-            <div id="containerDiv">
-                <div><h4>Create New Account</h4></div>
+    <!-- Begin page content -->
+    <div class="sidenav">
+        <div class="login-main-text">
+            <h2>Application<br> Login Page</h2>
+            <p>Login or register from here to access.</p>
+        </div>
+    </div>
+    <div class="main">
+        <div class="col-md-6 col-sm-12">
+            <div class="login-form" id="login_div">
                 <form>
                     <div class="form-group">
-                        <label>Enter Your User Name</label>
-                        <input type="text" id="register_name" class="form-control" placeholder="User Name">
+                        <label>User Name</label>
+                        <input type="text" id="user_name" class="form-control" placeholder="User Name">
                     </div>
                     <div class="form-group">
-                        <label>Enter Your Password</label>
-                        <input type="password" id="register_password1" class="form-control" placeholder="Password">
+                        <label>Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Password">
                     </div>
-                    <div class="form-group">
-                        <label>Enter Your Password One More</label>
-                        <input type="password" id="register_password2" class="form-control" placeholder="Password">
-                    </div>
-                    <button id="btn_register2" class="btn btn-black">Register</button>
+                    <button type="button" id="btn_login" class="btn btn-black">Login</button>
+                    <button type="button" id="btn_register" class="btn btn-secondary">Register</button>
                 </form>
-            </div>
 
+                <div class="logout-btn" id="login_div" hidden>
+                    <button type="button" id="btn_logout" class="btn btn-black">Logout</button>
+                </div>
+
+                <div id="containerDiv">
+                    <div>
+                        <h4>Create New Account</h4>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label>Enter Your User Name</label>
+                            <input type="text" id="register_name" class="form-control" placeholder="User Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Your Password</label>
+                            <input type="password" id="register_password1" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Your Password One More</label>
+                            <input type="password" id="register_password2" class="form-control" placeholder="Password">
+                        </div>
+                        <button id="btn_register2" class="btn btn-black">Register</button>
+                    </form>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
 
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <span class="text-muted"></span>
-    </div>
-</footer>
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted"></span>
+        </div>
+    </footer>
 
-<script type="text/javascript" src="./js/bootstrap.js"></script>
-<script src="js/admin.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.js"></script>
+    <script src="js/admin.js"></script>
 </body>
+
 </html>
