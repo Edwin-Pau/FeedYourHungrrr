@@ -7,7 +7,7 @@ const auth = async (req, res, next) => {
         // Stores incoming token from the header and gets rid of Bearer in the string
         const token = req.header('Authorization').replace('Bearer ', '')
 
-        const decodedToken = jwt.verify(token, 'hungrrr')
+        const decodedToken = jwt.verify(token, process.env.JWT_KEY)
         const username = decodedToken.username
 
         const result = await db.accessDB.select(
