@@ -8,7 +8,7 @@ router.get('/items', async (req, res) => {
         console.log("GET request for all items of a restaurant.")
         let id = req.query.id
         if (!id) {
-            throw new Error("Restaurant ID is required to get items.")
+            res.status(400).send({ error: "bad request, please check 'id'."})
         }
 
         await db.accessDB.incrementStatUsage("GET_Item")
@@ -19,7 +19,7 @@ router.get('/items', async (req, res) => {
     
         res.status(200).send(rows)
     } catch (error) {
-        res.status(401).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 })
 
@@ -28,15 +28,15 @@ router.post('/items', auth, async (req, res) => {
 
     try {
         if (!req.body.itemName) {
-            throw new Error("The key 'itemName' is required for an item.")
+            res.status(400).send({ error: "bad request, please check 'itemName'"})
         }
 
         if (!req.body.itemPrice) {
-            throw new Error("The key 'itemPrice' is required for an item.")
+            res.status(400).send({ error: "bad request, please check 'itemPrice'"})
         }
 
         if (!req.body.restaurantID) {
-            throw new Error("The key 'restaurantID' is required for an item.")
+            res.status(400).send({ error: "bad request, please check 'restaurantID'"})
         }
 
         let itemName = req.body.itemName;
@@ -52,7 +52,7 @@ router.post('/items', auth, async (req, res) => {
 
         res.status(201).send(result)
     } catch (error) {
-        res.status(401).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 })
 
@@ -61,15 +61,15 @@ router.put('/items', auth, async (req, res) => {
 
     try {
         if (!req.body.itemName) {
-            throw new Error("The key 'itemName' is required for updating an item.")
+            res.status(400).send({ error: "bad request, please check 'itemName'"})
         }
 
         if (!req.body.itemPrice) {
-            throw new Error("The key 'itemPrice' is required for updating an item.")
+            res.status(400).send({ error: "bad request, please check 'itemPrice'"})
         }
 
         if (!req.body.itemID) {
-            throw new Error("The key 'itemID' is required for updating an item.")
+            res.status(400).send({ error: "bad request, please check 'itemID'"})
         }
 
         let itemName = req.body.itemName;
@@ -84,9 +84,9 @@ router.put('/items', auth, async (req, res) => {
             `WHERE ItemID = ${itemID}`
         )
 
-        res.status(201).send({result})
+        res.status(204).send({result})
     } catch (error) {
-        res.status(401).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 })
 
@@ -95,7 +95,7 @@ router.delete('/items', auth, async (req, res) => {
 
     try {
         if (!req.body.itemID) {
-            throw new Error("The key 'itemID' is required for an item.")
+            res.status(400).send({ error: "bad request, please check 'itemID'"})
         }
 
         await db.accessDB.incrementStatUsage("DELETE_Item")
@@ -104,9 +104,9 @@ router.delete('/items', auth, async (req, res) => {
             `WHERE ItemID = ${req.body.itemID}`
         )
 
-        res.status(201).send({result})
+        res.status(204).send({result})
     } catch (error) {
-        res.status(401).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 })
 

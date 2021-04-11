@@ -13,7 +13,7 @@ router.get('/restaurants', async (req, res) => {
     
         res.status(200).send(rows)
     } catch (error) {
-        res.status(401).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 })
 
@@ -28,7 +28,7 @@ router.get('/restaurants/me', auth, async (req, res) => {
 
         res.status(201).send(result)
     } catch (error) {
-        res.status(401).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 })
 
@@ -54,7 +54,7 @@ router.post('/restaurants', auth, async (req, res) => {
 
         res.status(201).send(result)
     } catch (error) {
-        res.status(401).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 })
 
@@ -63,11 +63,11 @@ router.put('/restaurants', auth, async (req, res) => {
 
     try {
         if (!req.body.name) {
-            throw new Error("The key 'name' is required for a restaurant.")
+            res.status(400).send({ error: "bad request, please check 'name'"})
         }
 
         if (!req.body.id) {
-            throw new Error("The key 'id' is required for a restaurant.")
+            res.status(400).send({ error: "bad request, please check 'id'"})
         }
         let id = req.body.id
         let restaurantName = req.body.name
@@ -84,9 +84,9 @@ router.put('/restaurants', auth, async (req, res) => {
             `WHERE RestaurantID = ${id}`
         )
 
-        res.status(201).send({result})
+        res.status(204).send({result})
     } catch (error) {
-        res.status(401).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 })
 
@@ -95,7 +95,7 @@ router.delete('/restaurants', auth, async (req, res) => {
 
     try {
         if (!req.body.id) {
-            throw new Error("The key 'id' is required for a restaurant.")
+            res.status(400).send({ error: "bad request, please check 'id'"})
         }
 
         await db.accessDB.incrementStatUsage("DELETE_Restaurant")
@@ -104,9 +104,9 @@ router.delete('/restaurants', auth, async (req, res) => {
             `WHERE RestaurantID = ${req.body.id}`
         )
 
-        res.status(201).send({result})
+        res.status(204).send({result})
     } catch (error) {
-        res.status(401).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 })
 
