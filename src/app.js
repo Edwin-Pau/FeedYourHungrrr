@@ -12,8 +12,11 @@ console.log(__dirname)
 // Initializes express and sets up the paths.
 const app = express()
 
-app.use(cors());
-app.disable('etag');
+var corsOptions = {
+    origin: 'https://lucaswgong.com',
+    optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 // Customizes server, automatically parse incoming json into an object
 app.use(express.json())
