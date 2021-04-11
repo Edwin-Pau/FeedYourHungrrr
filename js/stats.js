@@ -15,22 +15,26 @@ function getStats(){
     });
 }
 
-getStats().then(function(data) {
-    console.log("stat data");
-    console.log(data);
-    let statsArr = JSON.parse(data);
-    document.getElementById("num_get_rest").innerHTML = statsArr[0].StatUsage;
-    document.getElementById("num_get_rest2").innerHTML = statsArr[1].StatUsage;
-    document.getElementById("num_post_rest").innerHTML = statsArr[2].StatUsage;
-    document.getElementById("num_put_rest").innerHTML = statsArr[3].StatUsage;
-    document.getElementById("num_delete_rest").innerHTML = statsArr[4].StatUsage;
-    document.getElementById("num_get_menu").innerHTML = statsArr[5].StatUsage;
-    document.getElementById("num_post_menu").innerHTML = statsArr[6].StatUsage;
-    document.getElementById("num_put_menu").innerHTML = statsArr[7].StatUsage;
-    document.getElementById("num_delete_menu").innerHTML = statsArr[8].StatUsage;
-    document.getElementById("num_post_signup").innerHTML = statsArr[9].StatUsage;
-    document.getElementById("num_post_login").innerHTML = statsArr[10].StatUsage;
+if (!localStorage.getItem(token)) {
 
-}).catch(function(err) {
-    console.error(err);
-});
+} else {
+    getStats().then(function(data) {
+        console.log("stat data");
+        console.log(data);
+        let statsArr = JSON.parse(data);
+        document.getElementById("num_get_rest").innerHTML = statsArr[0].StatUsage;
+        document.getElementById("num_get_rest2").innerHTML = statsArr[1].StatUsage;
+        document.getElementById("num_post_rest").innerHTML = statsArr[2].StatUsage;
+        document.getElementById("num_put_rest").innerHTML = statsArr[3].StatUsage;
+        document.getElementById("num_delete_rest").innerHTML = statsArr[4].StatUsage;
+        document.getElementById("num_get_menu").innerHTML = statsArr[5].StatUsage;
+        document.getElementById("num_post_menu").innerHTML = statsArr[6].StatUsage;
+        document.getElementById("num_put_menu").innerHTML = statsArr[7].StatUsage;
+        document.getElementById("num_delete_menu").innerHTML = statsArr[8].StatUsage;
+        document.getElementById("num_post_signup").innerHTML = statsArr[9].StatUsage;
+        document.getElementById("num_post_login").innerHTML = statsArr[10].StatUsage;
+    
+    }).catch(function(err) {
+        console.error(err);
+    });
+}
