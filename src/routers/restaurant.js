@@ -5,15 +5,31 @@ const auth = require('../middleware/auth')
 
 router.get('/restaurants', async (req, res) => {
     let rows;
-    if (req.query.id) {
-        console.log("GET request for one restaurant.")
-    } else {
+
+    try {
         console.log("GET request for all restaurants.")
         await db.accessDB.incrementStatUsage("GET_Restaurant")
         rows = await db.accessDB.select("SELECT * FROM Restaurant")
+    
+        res.status(200).send(rows)
+    } catch (error) {
+        res.status(401).send({ error: error.message })
     }
+})
 
-    res.status(200).send(rows)
+router.get('/restaurants/me', auth, async (req, res) => {
+    console.log(`GET request for getting own restaurants: ${req.username}`)
+
+    try {
+        await db.accessDB.incrementStatUsage("GET_Restaurant_Me")
+        let result = await db.accessDB.select(
+            `SELECT * FROM Restaurant WHERE Username = "${req.username}"`
+        )
+
+        res.status(201).send(result)
+    } catch (error) {
+        res.status(401).send({ error: error.message })
+    }
 })
 
 router.post('/restaurants', auth, async (req, res) => {
@@ -23,10 +39,19 @@ router.post('/restaurants', auth, async (req, res) => {
         if (!req.body.name) {
             throw new Error("The key 'name' is required for a restaurant.")
         }
+        let restaurantName = req.body.name
+        let description = ""
+        if (req.body.description) {
+            description = req.body.description
+        }
 
         await db.accessDB.incrementStatUsage("POST_Restaurant")
-        const result = await db.accessDB.insert("Restaurant", "RestaurantName", `'${req.body.name}'`)
-    
+        const result = await db.accessDB.insert(
+            "Restaurant", 
+            "RestaurantName, Description, Username",
+            `'${restaurantName}', '${description}', '${req.username}'`
+        )
+
         res.status(201).send(result)
     } catch (error) {
         res.status(401).send({ error: error.message })

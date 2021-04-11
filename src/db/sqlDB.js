@@ -17,7 +17,9 @@ const createTableQueries = {
     createRestaurantTableQuery: [[
         'CREATE TABLE IF NOT EXISTS Restaurant',
         '(RestaurantID int AUTO_INCREMENT PRIMARY KEY,',
-        'RestaurantName VARCHAR(511))'
+        'RestaurantName VARCHAR(511),',
+        'Description VARCHAR(511),',
+        'Username VARCHAR(511))'
     ].join(' '), 'Restaurant'],
 
     createUserTableQuery: [[
@@ -136,10 +138,11 @@ const accessDB = {
 
 // Tests:
 const tests = async () => {
-    accessDB.createTables()
+    await accessDB.createTables()
 
     let insertResult;
     insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Restaurant', 0")
+    insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'GET_Restaurant_Me', 0")
     insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'POST_Restaurant', 0")
     insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'PUT_Restaurant', 0")
     insertResult = await accessDB.insert("Stat", "StatName, StatUsage", "'DELETE_Restaurant', 0")
