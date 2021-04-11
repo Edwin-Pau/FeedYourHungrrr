@@ -13,7 +13,7 @@ console.log(__dirname)
 const app = express()
 
 var corsOptions = {
-    origin: 'https://lucaswgong.com',
+    origin: ['https://lucaswgong.com', 'https://feedyourhungrrr-client.herokuapp.com'],
     optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
