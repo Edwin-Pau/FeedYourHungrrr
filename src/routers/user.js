@@ -59,7 +59,7 @@ router.post('/users/signup', async (req, res) => {
         const token = await generateAuthToken(username)
         res.status(201).send({ username, token })
     } catch (error) {
-        res.status(400).send({ "error": error.message })
+        res.status(500).send({ "error": error.message })
     }
 })
 
@@ -77,9 +77,9 @@ router.post('/users/login', async (req, res) => {
         }
 
         const token = await generateAuthToken(username)
-        res.send({ username, token })
+        res.status(200).send({ username, token })
     } catch (error) {
-        res.status(400).send({ "error": "" + error.message });
+        res.status(500).send({ "error": "" + error.message });
     }
 })
 
