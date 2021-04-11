@@ -98,5 +98,5 @@ document.getElementById('btn_logout').addEventListener('click', function (event)
 });
 
 document.getElementById('btn_admin_menu').addEventListener('click', function (event) {
-    window.location.href = "./menu_admin.html" 
+    window.location.href = "./restaurant_admin.html" 
 });
