@@ -58,4 +58,56 @@ router.post('/restaurants', auth, async (req, res) => {
     }
 })
 
+router.put('/restaurants', auth, async (req, res) => {
+    console.log(`PUT request for editing a restaurant: ${req.body.name}`)
+
+    try {
+        if (!req.body.name) {
+            throw new Error("The key 'name' is required for a restaurant.")
+        }
+
+        if (!req.body.id) {
+            throw new Error("The key 'id' is required for a restaurant.")
+        }
+        let id = req.body.id
+        let restaurantName = req.body.name
+        let description = ""
+        if (req.body.description) {
+            description = req.body.description
+        }
+
+        await db.accessDB.incrementStatUsage("PUT_Restaurant")
+        const result = await db.accessDB.select(
+            "UPDATE Restaurant " +
+            `SET RestaurantName = "${restaurantName}", ` + 
+            `Description = "${description}" ` + 
+            `WHERE RestaurantID = ${id}`
+        )
+
+        res.status(201).send({result})
+    } catch (error) {
+        res.status(401).send({ error: error.message })
+    }
+})
+
+router.delete('/restaurants', auth, async (req, res) => {
+    console.log(`DELETE request for editing a restaurant: ${req.body.id}`)
+
+    try {
+        if (!req.body.id) {
+            throw new Error("The key 'id' is required for a restaurant.")
+        }
+
+        await db.accessDB.incrementStatUsage("DELETE_Restaurant")
+        const result = await db.accessDB.select(
+            "DELETE FROM Restaurant " + 
+            `WHERE RestaurantID = ${req.body.id}`
+        )
+
+        res.status(201).send({result})
+    } catch (error) {
+        res.status(401).send({ error: error.message })
+    }
+})
+
 module.exports = router
