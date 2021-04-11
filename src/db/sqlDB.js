@@ -30,6 +30,14 @@ const createTableQueries = {
         'Token VARCHAR(511))'
     ].join(' '), 'User'],
 
+    createItemTableQuery: [[
+        'CREATE TABLE IF NOT EXISTS Item',
+        '(ItemID int AUTO_INCREMENT PRIMARY KEY,',
+        'ItemName VARCHAR(511),',
+        'ItemPrice DEC(10, 2),',
+        'RestaurantID int)'
+    ].join(' '), 'User'],
+
     createStatTableQuery: [[
         'CREATE TABLE IF NOT EXISTS Stat',
         '(StatID int AUTO_INCREMENT PRIMARY KEY,',

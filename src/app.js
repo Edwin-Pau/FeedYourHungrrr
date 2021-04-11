@@ -3,6 +3,7 @@ const express = require('express')
 const userRouter = require('./routers/user.js')
 const restaurantRouter = require('./routers/restaurant')
 const statRouter = require('./routers/stat')
+const itemRouter = require('./routers/item')
 const cors = require('cors');
 
 // Variable for the current directory is __dirname.
@@ -21,7 +22,8 @@ app.use(express.json())
 const port = process.env.PORT || 3000
 
 // Registers routers, allowing us to refactor routes into separate files
-app.use('/api/v1/', restaurantRouter)
+app.use('/api/v1/', restaurantRouter);
+app.use('/api/v1/', itemRouter);
 app.use('/api/v1/', userRouter);
 app.use('/api/v1/', statRouter);
 
