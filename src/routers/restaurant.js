@@ -91,7 +91,7 @@ router.put('/restaurants', auth, async (req, res) => {
 })
 
 router.delete('/restaurants', auth, async (req, res) => {
-    console.log(`DELETE request for editing a restaurant: ${req.body.id}`)
+    console.log(`DELETE request for deleting a restaurant: ${req.body.id}`)
 
     try {
         if (!req.body.id) {

@@ -24,15 +24,15 @@ router.get('/items', async (req, res) => {
 })
 
 router.post('/items', auth, async (req, res) => {
-    console.log(`POST request for creating a new item: ${req.body.name}`)
+    console.log(`POST request for creating a new item: ${req.body.itemName}`)
 
     try {
         if (!req.body.itemName) {
-            throw new Error("The key 'name' is required for an item.")
+            throw new Error("The key 'itemName' is required for an item.")
         }
 
         if (!req.body.itemPrice) {
-            throw new Error("The key 'price' is required for an item.")
+            throw new Error("The key 'itemPrice' is required for an item.")
         }
 
         if (!req.body.restaurantID) {
@@ -51,6 +51,60 @@ router.post('/items', auth, async (req, res) => {
         )
 
         res.status(201).send(result)
+    } catch (error) {
+        res.status(401).send({ error: error.message })
+    }
+})
+
+router.put('/items', auth, async (req, res) => {
+    console.log(`PUT request for editing an item: ${req.body.itemName}`)
+
+    try {
+        if (!req.body.itemName) {
+            throw new Error("The key 'itemName' is required for updating an item.")
+        }
+
+        if (!req.body.itemPrice) {
+            throw new Error("The key 'itemPrice' is required for updating an item.")
+        }
+
+        if (!req.body.itemID) {
+            throw new Error("The key 'itemID' is required for updating an item.")
+        }
+
+        let itemName = req.body.itemName;
+        let itemPrice = req.body.itemPrice.toFixed(2);
+        let itemID = req.body.itemID
+
+        await db.accessDB.incrementStatUsage("PUT_Item")
+        const result = await db.accessDB.select(
+            "UPDATE Item " +
+            `SET ItemName = "${itemName}", ` + 
+            `ItemPrice = ${itemPrice} ` + 
+            `WHERE ItemID = ${itemID}`
+        )
+
+        res.status(201).send({result})
+    } catch (error) {
+        res.status(401).send({ error: error.message })
+    }
+})
+
+router.delete('/items', auth, async (req, res) => {
+    console.log(`DELETE request for deleting an item: ${req.body.itemID}`)
+
+    try {
+        if (!req.body.itemID) {
+            throw new Error("The key 'itemID' is required for an item.")
+        }
+
+        await db.accessDB.incrementStatUsage("DELETE_Item")
+        const result = await db.accessDB.select(
+            "DELETE FROM Item " + 
+            `WHERE ItemID = ${req.body.itemID}`
+        )
+
+        res.status(201).send({result})
     } catch (error) {
         res.status(401).send({ error: error.message })
     }
