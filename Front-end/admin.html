@@ -11,98 +11,93 @@
     <title>ISA Group Project</title>
     <link rel="shortcut icon" href="#">
 
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/sticky-footer-navbar.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link type="text/css" rel="stylesheet" href="./css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="./css/sticky-footer-navbar.css">
+    <link type="text/css" rel="stylesheet" href="css/admin.css">
 </head>
 
 <body class="d-flex flex-column h-100">
 <!-- Fixed navbar -->
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">App Name</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="./index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="./admin.html">Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./customer.html">Menu</a>
-                </li>
-            </ul>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">FeedYourHungrrr</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="restaurant.html">Restaurant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="admin.html">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="stats.html">Stats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://app.swaggerhub.com/apis-docs/FeedYourHungrrr/FeedYourHungrrr/1.0.0#/">API Docs</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </header>
 
 <!-- Begin page content -->
-<main class="flex-shrink-0">
-    <div class="container">
-        <h1 class="mt-5">Menu (Admin)</h1>
-        <p class="lead">Enjoy Our meal! First, select a restaurant to modify it.</p>
-    </div>
-</main>
+<div class="sidenav">
+<div class="login-main-text">
+    <h2>Application<br> Login Page</h2>
+    <p>Login or register from here to access.</p>
+</div>
+</div>
+<div class="main">
+    <div class="col-md-6 col-sm-12">
+        <div class="login-form" id="login_div">
+            <form>
+                <div class="form-group">
+                <label>User Name</label>
+                <input type="text" id="user_name" class="form-control" placeholder="User Name">
+            </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Password">
+                </div>
+                <button type="button" id="btn_login" class="btn btn-black">Login</button>
+                <button type="button" id="btn_register" class="btn btn-secondary">Register</button>
+            </form>
 
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div id=restaurantList class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div id="containerDiv">
+                <div><h4>Create New Account</h4></div>
+                <form>
+                    <div class="form-group">
+                        <label>Enter Your User Name</label>
+                        <input type="text" id="register_name" class="form-control" placeholder="User Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your Password</label>
+                        <input type="password" id="register_password1" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your Password One More</label>
+                        <input type="password" id="register_password2" class="form-control" placeholder="Password">
+                    </div>
+                    <button id="btn_register2" class="btn btn-black">Register</button>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>
 
-<div>
-    <div class="btn-custom float-end">
-        <button id="btn_create" class="btn btn-primary">Create Restaurant</button>
-        <button id="btn_save" class="btn btn-warning">Save Restaurant</button>
-    </div>
-</div>
-
-
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
-        <span class="fs-4">STAT REPORT</span>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">Method</th>
-                <th scope="col">Endpoint</th>
-                <th scope="col">Requests</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">GET</th>
-                <td>/API/v1/restaurant/</td>
-                <td><p id="num_get_admin"></p></td>
-            </tr>
-            <tr>
-                <th scope="row">POST</th>
-                <td>/API/v1/restaurant/</td>
-                <td><p id="num_post_admin"></p></td>
-            </tr>
-            <tr>
-                <th scope="row">PUT</th>
-                <td>/API/v1/restaurant/</td>
-                <td><span id="num_put_admin">0</span></td>
-            </tr>
-            <tr>
-                <th scope="row">DELETE</th>
-                <td>/API/v1/restaurant/</td>
-                <td ><span id="num_delete_admin">0</span></td>
-            </tr>
-            </tbody>
-        </table>
+        <span class="text-muted"></span>
     </div>
 </footer>
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script deferred="deferred" src="./js/admin.js"></script>
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+<script src="js/admin.js"></script>
 </body>
 </html>

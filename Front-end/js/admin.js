@@ -1,185 +1,137 @@
-function getData(){
-    return new Promise((resolve, reject) => {
-        let xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "https://feedyourhungrrr.herokuapp.com/api/v1/restaurants", true)
-        xhttp.send();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200){
-                if (this.responseText){
-                    resolve(this.responseText);
-                } else {
-                    reject(new Error("Request is failed"));
-                }
-            }
-        }
-    });
-}
-function getStats(){
-    return new Promise((resolve, reject) => {
-        let xhttp3 = new XMLHttpRequest();
-        xhttp3.open("GET", "https://feedyourhungrrr.herokuapp.com/api/v1/stats", true)
-        xhttp3.send();
-        xhttp3.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200){
-                if (this.responseText){
-                    resolve(this.responseText);
-                } else {
-                    reject(new Error("Request is failed"));
-                }
-            }
-        }
-    });
-}
+//login
+document.getElementById('btn_login').addEventListener('click', function(event){
+    const userName = document.getElementById("user_name").value
+    const password = document.getElementById("password").value
+    console.log(userName)
+    console.log(password)
 
-getData().then(function(data) {
-    // Load info
-    getStats().then(function(data) {
-        // Load info
-        console.log("stat data");
-        console.log(data);
-        let statsArr = JSON.parse(data);
-        document.getElementById("num_get_admin").innerHTML = statsArr[0].StatUsage;
-        document.getElementById("num_post_admin").innerHTML = statsArr[1].StatUsage;
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-    }).catch(function(err) {
-        console.error(err);
+    let raw = JSON.stringify({
+        "username": userName,
+        "password": password
     });
-    //console.log(data);
-    console.log(typeof(data));
-    let restaurantsArr = JSON.parse(data);
-    console.log(restaurantsArr)
 
-    displayRestaurants(restaurantsArr);
-    document.getElementById('btn_save').setAttribute("disabled", true);
-}).catch(function(err) {
-    console.error(err);
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://feedyourhungrrr.herokuapp.com/api/v1/users/login", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log(result)
+            const resultObj = JSON.parse(result)
+            localStorage.setItem("token", resultObj.token)
+        })
+        .then(()=> {window.location.href = "./restaurant_admin.html"})
+        .catch(error => console.log('error', error));
 });
 
+//register
+document.getElementById('btn_register').addEventListener('click', function(event){
+    document.getElementById('btn_register').disabled = true
+    //document.getElementById('containerDiv').style.display = "initial"
+    document.getElementById('containerDiv').style.visibility = "visible"
 
-function displayRestaurants(choices) {
-    if (choices.length !== 0) {
-        numOfRestaurants = choices.length;
+    // const outDiv1 = document.createElement("div")
+    // outDiv1.setAttribute("id", "containerDiv")
+    //
+    // const outDiv2 = document.createElement("div")
+    // const title = document.createElement("h4")
+    // title.innerHTML = "Create New Account"
+    //
+    // const form1 = document.createElement("form")
+    // const outDiv3 = document.createElement("div")
+    // outDiv3.setAttribute("class", "form-group")
+    // const label1 = document.createElement("label")
+    // label1.innerHTML = "Enter Your User Name"
+    // const input1 = document.createElement("input")
+    // input1.setAttribute("type", "text")
+    // input1.setAttribute("class", "form-control")
+    // input1.setAttribute("placeholder", "User Name")
+    // input1.setAttribute("id", "register_name")
+    //
+    // const outDiv4 = document.createElement("div")
+    // const label2 = document.createElement("label")
+    // label2.innerHTML = "Enter Your Password"
+    // const input2 = document.createElement("input")
+    // input2.setAttribute("type", "password")
+    // input2.setAttribute("class", "form-control")
+    // input2.setAttribute("placeholder", "Password")
+    // input2.setAttribute("id", "register_password1")
+    //
+    // const outDiv5 = document.createElement("div")
+    // const label3 = document.createElement("label")
+    // label3.innerHTML = "Enter Your Password One More"
+    // const input3 = document.createElement("input")
+    // input3.setAttribute("type", "password")
+    // input3.setAttribute("class", "form-control")
+    // input3.setAttribute("placeholder", "Password")
+    // input3.setAttribute("id", "register_password2")
+    //
+    // const reg_btn = document.createElement("button")
+    // reg_btn.setAttribute("id", "btn_register2")
+    // reg_btn.classList.add("btn")
+    // reg_btn.classList.add("btn-black")
+    // reg_btn.innerHTML = "Register"
+    //
+    // document.getElementById("login_div").appendChild(outDiv1)
+    // outDiv1.appendChild(outDiv2)
+    // outDiv2.appendChild(title)
+    //
+    // outDiv1.appendChild(form1)
+    // form1.appendChild(outDiv3)
+    // outDiv3.append(label1)
+    // outDiv3.append(input1)
+    // form1.appendChild(outDiv4)
+    // outDiv4.append(label2)
+    // outDiv4.append(input2)
+    // form1.appendChild(outDiv5)
+    // outDiv5.append(label3)
+    // outDiv5.append(input3)
+    // form1.appendChild(reg_btn)
+});
 
-        for (let i=0; i < numOfRestaurants; i++){
-            const outDiv1 = document.createElement("div")
-            outDiv1.setAttribute("classs", "col")
-            const outDiv2 = document.createElement("div")
-            outDiv2.classList.add("card")
-            outDiv2.classList.add("shadow-sm")
-            const outDiv3 = document.createElement("div")
-            outDiv3.setAttribute("classs", "card-body")
-            const p1 = document.createElement("p")
-            p1.setAttribute("id", choices[i].RestaurantID)
-            p1.setAttribute("classs", "card-text")
-            p1.innerHTML = choices[i].RestaurantName
+document.getElementById('btn_register2').addEventListener('click', function(event){
 
-            const outDiv4 = document.createElement("div")
-            outDiv4.classList.add("d-flex")
-            outDiv4.classList.add("justify-content-between")
-            outDiv4.classList.add("align-items-center")
-            const outDiv5 = document.createElement("div")
-            outDiv5.setAttribute("classs", "btn-group")
+    const userName = document.getElementById('register_name').value
+    const password1 = document.getElementById('register_password1').value
+    const password2 = document.getElementById('register_password2').value
 
-            const btn1 = document.createElement("button")
-            btn1.setAttribute("type", "button")
-            btn1.classList.add("btn")
-            btn1.classList.add("btn-primary")
-            btn1.innerHTML = "Edit"
-            const btn2 = document.createElement("button")
-            btn2.setAttribute("type", "button")
-            btn2.classList.add("btn")
-            btn2.classList.add("btn-warning")
-            btn2.innerHTML = "Save"
-            const btn3 = document.createElement("button")
-            btn3.setAttribute("type", "button")
-            btn3.classList.add("btn")
-            btn3.classList.add("btn-danger")
-            btn3.innerHTML = "Delete"
-
-            document.getElementById("restaurantList").appendChild(outDiv1)
-            outDiv1.appendChild(outDiv2)
-            outDiv2.appendChild(outDiv3)
-            outDiv3.appendChild(p1)
-            outDiv3.appendChild(outDiv4)
-            outDiv4.appendChild(outDiv5)
-            outDiv5.appendChild(btn1)
-            outDiv5.appendChild(btn2)
-            outDiv5.appendChild(btn3)
-        }
+    if (password1 !== password2){
+        alert("The input passwords do not match!")
+        return;
     }
 
-    let totalNumOfRestaurants = choices.length;
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-    //create
-    document.getElementById('btn_create').addEventListener('click', function(event){
-        totalNumOfRestaurants= totalNumOfRestaurants+1;
-        const newRestaurant = buildNewRestaurant(totalNumOfRestaurants);
-        document.getElementById("restaurantList").appendChild(newRestaurant);
-        document.getElementById('btn_create').setAttribute("disabled", true);
-        document.getElementById('btn_save').removeAttribute("disabled");
+    let raw = JSON.stringify({
+        "username": userName,
+        "password": password1
     });
 
-    //save: post
-    document.getElementById('btn_save').addEventListener('click', function(event){
-        const newRestaurantName = document.getElementById(totalNumOfRestaurants).value
-        // const newRestaurant = {}
-        // newRestaurant.restaurantID = totalNumOfRestaurants;
-        // newRestaurant.name = newRestaurantName;
-        // console.log(newRestaurant);
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+    fetch("https://feedyourhungrrr.herokuapp.com/api/v1/users/signup", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log("signup succeed"))
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 
-        var raw = JSON.stringify({
-            "name": newRestaurantName
-        });
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        fetch("https://feedyourhungrrr.herokuapp.com/api/v1/restaurants", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .then(() => location.reload())
-            .catch(error => console.log('error', error));
-        // let xhttp2 = new XMLHttpRequest();
-        // let params = "data="+JSON.stringify(newRestaurant);
-        // xhttp2.open("POST", "https://feedyourhungrrr.herokuapp.com/api/v1/restaurants", true);
-        // xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        // xhttp2.send(params);
-        //
-        // xhttp2.onreadystatechange = function() {
-        //     if (xhttp2.readyState === 4 && xhttp2.status === 201) {
-        //         console.log("post request result: " + xhttp2.responseText)
-        //         location.reload();
-        //     }
-        // }
-
-    });
-}
-///////////////////////////
-
-const buildNewRestaurant = (numOfRestaurants) => {
-    const outDiv1 = document.createElement("div")
-    outDiv1.setAttribute("classs", "col")
-    const outDiv2 = document.createElement("div")
-    outDiv2.classList.add("card")
-    outDiv2.classList.add("shadow-sm")
-    const outDiv3 = document.createElement("div")
-    outDiv3.classList.add("card-body")
-    outDiv3.classList.add("form-floating")
-    const ta1 = document.createElement("textarea")
-    ta1.setAttribute("id", numOfRestaurants)
-    ta1.setAttribute("classs", "form-control")
-    ta1.setAttribute("placeholder", "restaurant name")
-
-    outDiv1.appendChild(outDiv2)
-    outDiv2.appendChild(outDiv3)
-    outDiv3.appendChild(ta1)
-
-    return outDiv1
-}
+    // fetch("https://feedyourhungrrr.herokuapp.com/api/v1/users/signup", requestOptions)
+    //     .then(response => response.text())
+    //     .then(result => console.log(result))
+    //     .then(() => document.getElementById('btn_register').removeAttribute("disabled"))
+    //     .then(() => document.getElementById('containerDiv').style.display = "none")
+    //     .catch(error => console.log(error));
+});

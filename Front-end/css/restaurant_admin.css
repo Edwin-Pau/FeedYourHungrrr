@@ -1,0 +1,10 @@
+#btn_create_group{
+    margin: 5%
+}
+
+.nav li{
+    display: inline-block;
+    font-size: 20pt;
+    margin-left: 5%;
+    margin-right: 5%;
+}
