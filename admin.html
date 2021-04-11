@@ -71,41 +71,35 @@
                     <button type="button" id="btn_login" class="btn btn-black">Login</button>
                     <button type="button" id="btn_register" class="btn btn-secondary">Register</button>
                 </form>
+            </div>
 
-                <div class="logout-btn" id="login_div" hidden>
-                    <button type="button" id="btn_logout" class="btn btn-black">Logout</button>
+            <div class="login-form" id="logout_div">
+                <button type="button" id="btn_admin_menu" class="btn btn-black">Edit Restaurants</button>
+                <button type="button" id="btn_logout" class="btn btn-black">Logout</button>
+            </div>
+
+            <div class="login-form" id="register_div">
+                <div>
+                    <h4>Create New Account</h4>
                 </div>
-
-                <div id="containerDiv">
-                    <div>
-                        <h4>Create New Account</h4>
+                <form>
+                    <div class="form-group">
+                        <label>Enter Your User Name</label>
+                        <input type="text" id="register_name" class="form-control" placeholder="User Name">
                     </div>
-                    <form>
-                        <div class="form-group">
-                            <label>Enter Your User Name</label>
-                            <input type="text" id="register_name" class="form-control" placeholder="User Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Enter Your Password</label>
-                            <input type="password" id="register_password1" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <label>Enter Your Password One More</label>
-                            <input type="password" id="register_password2" class="form-control" placeholder="Password">
-                        </div>
-                        <button id="btn_register2" class="btn btn-black">Register</button>
-                    </form>
-                </div>
-
+                    <div class="form-group">
+                        <label>Enter Your Password</label>
+                        <input type="password" id="register_password1" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your Password Again</label>
+                        <input type="password" id="register_password2" class="form-control" placeholder="Password">
+                    </div>
+                    <button type="button" id="btn_register2" class="btn btn-black">Register</button>
+                </form>
             </div>
         </div>
     </div>
-
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container">
-            <span class="text-muted"></span>
-        </div>
-    </footer>
 
     <script type="text/javascript" src="./js/bootstrap.js"></script>
     <script src="js/admin.js"></script>
