@@ -6,23 +6,23 @@ const auth = async (req, res, next) => {
     try {
         // Stores incoming token from the header and gets rid of Bearer in the string
         const token = req.header('Authorization').replace('Bearer ', '')
-        console.log(token)
 
-        const decoded = jwt.verify(token, 'hungrrr')
-        console.log(decoded)
+        const decodedToken = jwt.verify(token, 'hungrrr')
+        const username = decodedToken.username
 
-        // Finds a user with a correct id with the authentication stored
-        const user = await db.accessDB.select()
+        const result = await db.accessDB.select(
+            `SELECT * FROM User WHERE Username = '${username}'`
+        )
+        const storedToken = result[0].Token
 
-        if (!user) {
+        const match = storedToken === token ? true : false
+        if (!match) {
             throw new Error()
         }
 
-        // Stores found user data and token so we don't have to query again 
-        req.user = user
+        req.username = username
         req.token = token
 
-        // User has proven they have been authenticated properly
         next()
     } catch (error) {
         res.status(401).send({ error: 'Please authenticate.' })
